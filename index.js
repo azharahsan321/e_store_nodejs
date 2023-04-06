@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
+require('./connections/db');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -10,9 +10,7 @@ app.use(bodyParser.urlencoded({
 
 let apiRouter = require('./routes/api')(express.Router());
 
-mongoose.connect('mongodb://localhost:27017/eStoreDB', { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 5000 })
-    .then(res => { console.log('Mongodb has been connected'); })
-    .catch(err => { console.log(err) })
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
