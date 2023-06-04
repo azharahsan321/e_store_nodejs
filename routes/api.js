@@ -2,7 +2,7 @@ let productsController = new (require('../controllers/productsController'))();
 
 module.exports = (router) => {
 
-    router.get('/home', productsController.fetchAll)
+    router.get('/products/get/all', productsController.fetchAll)
 
     return router
 }
